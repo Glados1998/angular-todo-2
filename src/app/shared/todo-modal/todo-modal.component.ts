@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, Validators} from "@angular/forms";
-import {TodoService} from "../../core/services/todo.service";
 import {Todo} from "../../core/interfaces/todo";
+import {TodoService} from "../../core/services/todo/todo.service";
 
 @Component({
   selector: 'app-todo-modal',

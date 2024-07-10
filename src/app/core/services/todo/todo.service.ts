@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Todo} from "../interfaces/todo";
 import {interval, switchMap} from "rxjs";
+import {Todo} from "../../interfaces/todo";
 
 /**
  * Service for managing Todo items.

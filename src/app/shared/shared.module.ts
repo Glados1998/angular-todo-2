@@ -6,6 +6,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {TodoItemComponent} from "./todo-item/todo-item.component";
 import {TodoModalComponent} from "./todo-modal/todo-modal.component";
 import {RouterLink} from "@angular/router";
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -13,13 +14,15 @@ import {RouterLink} from "@angular/router";
     HeaderComponent,
     TodoFormComponent,
     TodoItemComponent,
-    TodoModalComponent
+    TodoModalComponent,
+    FooterComponent
   ],
   exports: [
     HeaderComponent,
     TodoFormComponent,
     TodoItemComponent,
-    TodoModalComponent
+    TodoModalComponent,
+    FooterComponent
   ],
     imports: [
         CommonModule,

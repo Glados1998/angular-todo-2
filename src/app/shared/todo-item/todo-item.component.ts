@@ -1,8 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {TodoModalComponent} from "../todo-modal/todo-modal.component";
-import {TodoService} from "../../core/services/todo.service";
 import {Todo} from "../../core/interfaces/todo";
+import {TodoService} from "../../core/services/todo/todo.service";
 
 @Component({
   selector: 'app-todo-item',
