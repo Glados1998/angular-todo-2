@@ -13,12 +13,12 @@ import {ReactiveFormsModule} from "@angular/forms";
   exports: [
     TodoComponent
   ],
-    imports: [
-        CommonModule,
-        CoreModule,
-        SharedModule,
-        ReactiveFormsModule,
-    ]
+  imports: [
+    CommonModule,
+    CoreModule,
+    SharedModule,
+    ReactiveFormsModule,
+  ]
 })
 export class FeaturesModule {
 }

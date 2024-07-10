@@ -7,14 +7,17 @@ import {HomeComponent} from "./features/home/home.component";
 const routes: Routes = [
   {
     path: 'home',
+    loadChildren: () => import('./features/features.module').then(m => m.FeaturesModule),
     component: HomeComponent,
   },
   {
     path: 'todo',
+    loadChildren: () => import('./features/features.module').then(m => m.FeaturesModule),
     component: TodoComponent
   },
   {
     path: "about",
+    loadChildren: () => import('./features/features.module').then(m => m.FeaturesModule),
     component: AboutComponent
   },
   {

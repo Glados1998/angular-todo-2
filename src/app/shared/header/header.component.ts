@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {HEADER_LINKS} from "../../data/menu_data";
+import {HEADER_LINKS} from "../../core/data/menu_data";
 
 @Component({
   selector: 'app-header',

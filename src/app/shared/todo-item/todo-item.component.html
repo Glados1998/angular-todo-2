@@ -5,9 +5,9 @@
     <p>Note: {{todoItem.description}}</p>
   </div>
   <div class="todo-item-action_area">
-    <button class="btn-info" [disabled]="todoItem.isComplete" (click)="editTask(todoItem.id)">Edit</button>
-    <button class="btn-danger" (click)="deleteTask(todoItem.id)">Delete</button>
-    <button (click)="todoItem.isComplete ? markAsIncomplete(todoItem.id) : markAsComplete(todoItem.id)" [ngClass]="{'btn-warning': todoItem.isComplete, 'btn-success': !todoItem.isComplete}">
+    <button class="btn-info" [disabled]="todoItem.isComplete" (click)="editTask(todoItem._id)">Edit</button>
+    <button class="btn-danger" (click)="deleteTask(todoItem._id)">Delete</button>
+    <button (click)="todoItem.isComplete ? markAsIncomplete(todoItem._id) : markAsComplete(todoItem._id)" [ngClass]="{'btn-warning': todoItem.isComplete, 'btn-success': !todoItem.isComplete}">
       {{todoItem.isComplete ? 'Reopen' : 'Complete'}}
     </button>
   </div>

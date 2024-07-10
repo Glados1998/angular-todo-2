@@ -18,7 +18,7 @@ export class TodoModalComponent implements OnInit {
   }
 
   public editForm = this.fb.group({
-    id: this.data.todoId,
+    _id: this.data.todoId,
     title: ['', Validators.required],
     description: ['', Validators.maxLength(50)],
     severity: ['', Validators.required],
