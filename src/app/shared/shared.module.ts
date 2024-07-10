@@ -7,6 +7,8 @@ import {TodoItemComponent} from "./todo-item/todo-item.component";
 import {TodoModalComponent} from "./todo-modal/todo-modal.component";
 import {RouterLink} from "@angular/router";
 import { FooterComponent } from './footer/footer.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 @NgModule({
@@ -24,11 +26,13 @@ import { FooterComponent } from './footer/footer.component';
     TodoModalComponent,
     FooterComponent
   ],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        RouterLink,
-    ]
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterLink,
+    MatButtonModule,
+    MatMenuModule,
+  ]
 })
 export class SharedModule {
 }

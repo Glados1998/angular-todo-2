@@ -5,3 +5,9 @@ export const HEADER_LINKS: IHeaderLinks[] = [
   {path: 'todo', label: 'Todo'},
   {path: 'about', label: 'About'}
 ]
+
+
+export const HEADER_SIDE_LINKS: IHeaderLinks[] = [
+  {path: 'login', label: 'Login'},
+  {path: 'register', label: 'Register'}
+]

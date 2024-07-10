@@ -8,5 +8,11 @@
         <a [href]=link.path>{{ link.label }}</a>
       </li>
     </ol>
+    <div class="nav-side">
+      <p mat-button [matMenuTriggerFor]="menu">Menu</p>
+      <mat-menu #menu="matMenu">
+          <a *ngFor="let sideLink of sideMenu" mat-menu-item routerLink="{{ sideLink.path }}">{{ sideLink.label }}</a>
+      </mat-menu>
+    </div>
   </nav>
 </header>
