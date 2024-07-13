@@ -1,1 +1,32 @@
-<p>login works!</p>
+<div>
+  <div>
+    <h3>
+      Login to your account
+    </h3>
+    <p>
+      Please enter your username and password to login.
+    </p>
+  </div>
+  <div>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div>
+        <label for="email">Email:</label>
+        <input type="text" class="form-control" id="email" formControlName="email" required>
+        <p *ngIf="loginForm.controls['email'].errors?.['required']">You have to specify a email</p>
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" formControlName="password" required>
+        <p *ngIf="loginForm.controls['password'].errors?.['required']">You have to specify a password</p>
+      </div>
+      <div>
+        <button type="submit" class="btn-success" [disabled]="!loginForm.valid">Login</button>
+      </div>
+    </form>
+  </div>
+  <div>
+    <p>
+      Don't have an account? <a routerLink="/register">Register here</a>
+    </p>
+  </div>
+</div>
