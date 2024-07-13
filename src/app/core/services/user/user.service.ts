@@ -1,5 +1,6 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import {BehaviorSubject, tap} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import {User, UserLogin} from "../../interfaces/user";
 
 @Injectable({
@@ -8,33 +9,41 @@ import {User, UserLogin} from "../../interfaces/user";
 export class UserService {
 
   private apiUrl = 'http://localhost:3000/user';
+  loginStatusSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
+  loginStatus$ = this.loginStatusSubject.asObservable();
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   register(user: User) {
     return this.http.post<User>(`${this.apiUrl}/register`, user);
   }
 
   login(user: { email: string, password: string }) {
-    return this.http.post<UserLogin>(`${this.apiUrl}/login`, user);
+    return this.http.post<UserLogin>(`${this.apiUrl}/login`, user).pipe(
+      tap((response: any) => {
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('user', JSON.stringify({ username: response.user.username, email: response.user.email }));
+        this.loginStatusSubject.next(true);
+      })
+    );
   }
 
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    this.loginStatusSubject.next(false);
   }
 
-  deleteUser(id: string) {
-    return this.http.delete<User>(`${this.apiUrl}/delete/${id}`);
-  }
-
-  getUser() {
+  getLogin() {
     const userStr = localStorage.getItem('user');
-    if (userStr) {
-      return JSON.parse(userStr);
+    const token = localStorage.getItem('token');
+    if (userStr && token) {
+      return { user: JSON.parse(userStr), token };
     }
     return null;
   }
 
+  private isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
 }

@@ -10,11 +10,15 @@
     </ol>
     <div class="nav-side">
       <p mat-button [matMenuTriggerFor]="menu">Menu</p>
-      <template >
 
-      </template>
       <mat-menu #menu="matMenu">
+        <ng-container *ngIf="!logins">
           <a *ngFor="let sideLink of sideMenu" mat-menu-item routerLink="{{ sideLink.path }}">{{ sideLink.label }}</a>
+        </ng-container>
+        <ng-container *ngIf="logins">
+          <a mat-menu-item routerLink="/account">Account</a>
+          <a mat-menu-item (click)="logout()">Logout</a>
+        </ng-container>
       </mat-menu>
     </div>
   </nav>

@@ -42,6 +42,8 @@ export class RegisterComponent {
         console.log('User registered successfully', data);
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify({username: data.user.username, email: data.user.email}));
+        this.userService.loginStatusSubject.next(true);
+
         this.router.navigate(['/home']);
         this.registerForm.reset();
       },

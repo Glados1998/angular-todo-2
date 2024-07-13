@@ -4,9 +4,10 @@ import {TodoComponent} from './todo/todo.component';
 import {CoreModule} from "../core/core.module";
 import {SharedModule} from "../shared/shared.module";
 import {ReactiveFormsModule} from "@angular/forms";
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { AccountComponent } from './account/account.component';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
+import {AccountComponent} from './account/account.component';
+import {RouterLink} from "@angular/router";
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { AccountComponent } from './account/account.component';
     CoreModule,
     SharedModule,
     ReactiveFormsModule,
+    RouterLink,
   ]
 })
 export class FeaturesModule {
