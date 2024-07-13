@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {HEADER_LINKS, HEADER_SIDE_LINKS} from "../../core/data/menu_data";
-import {UserService} from "../../core/services/user/user.service";
+import {UserService} from "../../../core/services/user/user.service";
+import {HEADER_LINKS, HEADER_SIDE_LINKS} from "../../../core/data/menu_data";
+
 
 @Component({
   selector: 'app-header',
