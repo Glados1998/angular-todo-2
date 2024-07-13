@@ -1,1 +1,38 @@
-<p>register works!</p>
+<div>
+  <div>
+    <h3>
+      Register
+    </h3>
+    <p>
+      Please fill in the form to register.
+    </p>
+  </div>
+  <div>
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" formControlName="username" required>
+        <p *ngIf="registerForm.controls['username'].errors?.['required']">You have to specify a username</p>
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" formControlName="email" required>
+        <p *ngIf="registerForm.controls['email'].errors?.['required']">You have to specify an email</p>
+        <p *ngIf="registerForm.controls['email'].errors?.['email']">You have to specify a valid email</p>
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" formControlName="password" required>
+        <p *ngIf="registerForm.controls['password'].errors?.['required']">You have to specify a password</p>
+      </div>
+      <div>
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" required>
+        <p *ngIf="registerForm.controls['confirmPassword'].errors?.['required']">You have to confirm the password</p>
+      </div>
+      <div>
+        <button type="submit" class="btn-success" [disabled]="!registerForm.valid">Register</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -12,22 +12,29 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  registerUser(user: User) {
+  register(user: User) {
     return this.http.post<User>(`${this.apiUrl}/register`, user);
   }
 
-  loginUser(user: User) {
+  login(user: User) {
     return this.http.post<User>(`${this.apiUrl}/login`, user);
   }
 
-  logoutUser() {
-  }
-
-  getUserProfile() {
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
   }
 
   deleteUser(id: string) {
+    return this.http.delete<User>(`${this.apiUrl}/delete/${id}`);
   }
 
+  getUser() {
+    const userStr = localStorage.getItem('user');
+    if (userStr) {
+      return JSON.parse(userStr);
+    }
+    return null;
+  }
 
 }
