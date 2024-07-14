@@ -9,8 +9,8 @@
       </li>
     </ol>
     <div class="nav-side">
-      <p mat-button [matMenuTriggerFor]="menu">Menu</p>
-
+      <p mat-button *ngIf="!logins" [matMenuTriggerFor]="menu">Menu</p>
+      <p mat-button *ngIf="logins" [matMenuTriggerFor]="menu">{{ logins.user.username }}</p>
       <mat-menu #menu="matMenu">
         <ng-container *ngIf="!logins">
           <a *ngFor="let sideLink of sideMenu" mat-menu-item routerLink="{{ sideLink.path }}">{{ sideLink.label }}</a>
