@@ -1,9 +1,8 @@
-import {Component, Input} from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
-import {TodoModalComponent} from "../todo-modal/todo-modal.component";
-import {Todo} from "../../../core/interfaces/todo";
-import {TodoService} from "../../../core/services/todo/todo.service";
-
+import { Component, Input } from '@angular/core';
+import { MatDialog } from "@angular/material/dialog";
+import { TodoModalComponent } from "../todo-modal/todo-modal.component";
+import { Todo } from "../../../core/interfaces/todo";
+import { TodoService } from "../../../core/services/todo/todo.service";
 
 @Component({
   selector: 'app-todo-item',
@@ -12,87 +11,56 @@ import {TodoService} from "../../../core/services/todo/todo.service";
 })
 export class TodoItemComponent {
 
-  // Get the todoItems from the parent component
-  @Input() todoItems: any;
+  @Input() todoItem: Todo; // Use the Todo interface for type safety
 
   constructor(
     private dialog: MatDialog,
     private todoService: TodoService,
-  ) {
-  }
+  ) {}
 
-
-  editTask(id: number) {
-    // Open the dialog
+  editTask(id: number): void {
     const dialogRef = this.dialog.open(TodoModalComponent, {
       width: '500px',
-      data: {
-        todoId: id,
-      }
+      data: { todoId: id }
     });
 
-    // After the dialog is closed
     dialogRef.afterClosed().subscribe((result: Todo) => {
       if (result) {
-        // Update the task
         this.todoService.updateTodo(id, result).subscribe({
-          next: (data: any) => {
-            this.todoItems = this.todoItems.map((todo: { id: number; }) => todo.id === data.id ? data : todo);
+          next: (data: Todo) => {
+            console.log('Task updated successfully', data);
+            this.todoItem = data; // Update the local todoItem
           },
           error: (error: any) => {
-            console.error('There was an error!', error);
+            console.error('There was an error updating the task!', error);
           }
-        })
+        });
       }
     });
   }
 
-  // Delete the task
-  deleteTask(id: number) {
+  deleteTask(id: number): void {
     this.todoService.deleteTodo(id).subscribe({
-      next: (data: any) => {
-        // Remove the task from the todoItems
-        this.todoItems = this.todoItems.filter((todo: { id: number; }) => todo.id !== id);
+      next: () => {
+        console.log('Task deleted successfully');
+        // Optionally, emit an event to the parent component to remove the item from the list
       },
       error: (error: any) => {
-        console.error('There was an error!', error);
+        console.error('There was an error deleting the task!', error);
       }
     });
   }
 
-  markAsComplete(id: number) {
-    // Get the current todo item
-    const currentTodo = this.todoItems.find((todo: { id: number; }) => todo.id === id);
-
-    // Update the isComplete property
-    const updatedTodo = { ...currentTodo, isComplete: true };
-
-    this.todoService.completeTodo(id, updatedTodo).subscribe({
-      next: (data: any) => {
-        console.log(updatedTodo)
-        this.todoItems = this.todoItems.map((todo: { id: number; }) => todo.id === data.id ? { ...todo, isComplete: true } : todo);
+  setStatus(id: number, todo: Todo): void {
+    todo.isComplete = !todo.isComplete;
+    this.todoService.setStatus(id, todo).subscribe({
+      next: (data: Todo) => {
+        console.log('Task status updated successfully', data);
+        this.todoItem = data; // Update the local todoItem
       },
       error: (error: any) => {
-        console.error('There was an error!', error);
+        console.error('There was an error updating the task status!', error);
       }
     });
   }
-
-  markAsIncomplete(id: number) {
-    // Get the current todo item
-    const currentTodo = this.todoItems.find((todo: { id: number; }) => todo.id === id);
-
-    // Update the isComplete property
-    const updatedTodo = { ...currentTodo, isComplete: false };
-
-    this.todoService.updateTodo(id, updatedTodo).subscribe({
-      next: (data: any) => {
-        this.todoItems = this.todoItems.map((todo: { id: number; }) => todo.id === data.id ? { ...todo, isComplete: false } : todo);
-      },
-      error: (error: any) => {
-        console.error('There was an error!', error);
-      }
-    });
-  }
-
 }

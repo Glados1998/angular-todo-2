@@ -1,4 +1,4 @@
-<div class="todo-item" *ngFor="let todoItem of todoItems" [ngClass]="{'completed': todoItem.isComplete, 'incomplete': !todoItem.isComplete}">
+<div class="todo-item" [ngClass]="{'completed': todoItem.isComplete, 'incomplete': !todoItem.isComplete}">
   <div class="todo-item_content">
     <h4>Task: {{todoItem.title}}</h4>
     <p>Priority: {{todoItem.severity}}</p>
@@ -7,7 +7,7 @@
   <div class="todo-item-action_area">
     <button class="btn-info" [disabled]="todoItem.isComplete" (click)="editTask(todoItem._id)">Edit</button>
     <button class="btn-danger" (click)="deleteTask(todoItem._id)">Delete</button>
-    <button (click)="todoItem.isComplete ? markAsIncomplete(todoItem._id) : markAsComplete(todoItem._id)" [ngClass]="{'btn-warning': todoItem.isComplete, 'btn-success': !todoItem.isComplete}">
+    <button (click)="setStatus(todoItem._id, todoItem)" [ngClass]="{'btn-warning': todoItem.isComplete, 'btn-success': !todoItem.isComplete}">
       {{todoItem.isComplete ? 'Reopen' : 'Complete'}}
     </button>
   </div>

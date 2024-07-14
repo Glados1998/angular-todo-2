@@ -1,8 +1,21 @@
 <div class="todo">
-  <div class="todo-form">
-    <app-todo-form></app-todo-form>
+  <div class="todo_head">
+    <h3>
+      Todo list
+    </h3>
+    <h4>
+      Total tasks: {{ todos?.length || 0 }}
+    </h4>
+    <p>
+      You can add, edit, delete, and mark tasks as complete or incomplete.
+    </p>
   </div>
-  <div class="todo-list">
-    <app-todo-item [todoItems]="todos"></app-todo-item>
+  <div class="todo_list">
+    <div class="todo_list-form">
+      <app-todo-form></app-todo-form>
+    </div>
+    <div class="todo-list-view">
+      <app-todo-item [todoItem]="todoItem" *ngFor="let todoItem of todos"></app-todo-item>
+    </div>
   </div>
 </div>

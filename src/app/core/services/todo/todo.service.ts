@@ -75,13 +75,13 @@ export class TodoService {
   }
 
   /**
-   * Mark a Todo item as complete on the server.
+   * Mark a Todo item as complete or not on the server.
    *
-   * @param id - The ID of the Todo item to mark as complete.
-   * @param updatedData - The updated Todo item (with the completed flag set to true).
+   * @param id - The ID of the Todo item to mark as complete or not.
+   * @param updatedData - The updated Todo item (with the completed flag set to true or false).
    * @returns An Observable that emits the updated Todo item.
    */
-  completeTodo(id: number, updatedData: Todo) {
+  setStatus(id: number, updatedData: Todo) {
     return this.http.put<Todo>(`${this.apiUrl}/${id}/complete`, updatedData);
   }
 }
