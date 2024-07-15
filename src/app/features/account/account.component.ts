@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../core/services/user/user.service";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
+import {FormBuilder, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-account',
@@ -16,7 +17,9 @@ export class AccountComponent implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
-  ) { }
+    private fb: FormBuilder
+  ) {
+  }
 
 
   ngOnInit(): void {
@@ -29,5 +32,24 @@ export class AccountComponent implements OnInit {
   onLogout(): void {
     this.userService.logout();
     this.router.navigate(['/login']);
+  }
+
+  accountForm = this.fb.group({
+    username: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+  })
+
+  passwordForm = this.fb.group({
+    currentPassword: ['', Validators.required],
+    newPassword: ['', Validators.required],
+    confirmPassword: ['', Validators.required]
+  })
+
+  onSubmit(): void {
+    console.log(this.accountForm.value);
+  }
+
+  onChangePassword(): void {
+    console.log(this.passwordForm.value);
   }
 }

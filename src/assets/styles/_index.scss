@@ -98,3 +98,27 @@ main {
     }
   }
 }
+
+.account {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &_main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+   &-side {
+     place-self: center;
+     width: fit-content;
+     padding: 1rem;
+     border-radius: 0.5rem;
+     background: darken($BAUHAUS-App-Branding-5-hex, 5%);
+     &-head {
+
+     }
+     &-content {
+
+     }
+   }
+  }
+}
