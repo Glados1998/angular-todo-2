@@ -1,8 +1,8 @@
 <div class="todo-item" [ngClass]="{'completed': todoItem.isComplete, 'incomplete': !todoItem.isComplete}">
   <div class="todo-item_content">
-    <h4>Task: {{todoItem.title}}</h4>
-    <p>Priority: {{todoItem.severity}}</p>
-    <p>Note: {{todoItem.description}}</p>
+    <h3>Task: {{todoItem.title}}</h3>
+    <h4>Priority: {{todoItem.severity}}</h4>
+    <span>Note: {{todoItem.description}}</span>
   </div>
   <div class="todo-item-action_area">
     <button class="btn-info" [disabled]="todoItem.isComplete" (click)="editTask(todoItem._id)">Edit</button>
