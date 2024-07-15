@@ -1,1 +1,25 @@
-<p>account works!</p>
+<div class="account">
+  <div class="account_head">
+    <h2>Account</h2>
+    <p>
+      Here you can manage your account details.
+    </p>
+  </div>
+  <div class="account_main">
+    <div class="account_main-side">
+      <div class="account_main-side-head">
+        <h2>Account Details</h2>
+      </div>
+      <div class="account_main-side-content">
+        <h3>Username: {{ logins.user?.username }}</h3>
+        <h3>Email: {{ logins.user?.email }}</h3>
+      </div>
+      <div>
+        <button class="btn-warning" (click)="onLogout()">Logout</button>
+      </div>
+    </div>
+    <div>
+      lorem ipsum
+    </div>
+  </div>
+</div>

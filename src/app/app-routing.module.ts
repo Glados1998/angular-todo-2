@@ -6,6 +6,7 @@ import {HomeComponent} from "./features/home/home.component";
 import {LoginComponent} from "./features/login/login.component";
 import {RegisterComponent} from "./features/register/register.component";
 import {AccountComponent} from "./features/account/account.component";
+import {isUserAuthGuard} from "./core/guard/is-user-auth.guard";
 
 const routes: Routes = [
   {
@@ -36,6 +37,7 @@ const routes: Routes = [
   {
     path:"account",
     loadChildren: () => import('./features/features.module').then(m => m.FeaturesModule),
+    canActivate: [isUserAuthGuard],
     component: AccountComponent,
   },
   {
