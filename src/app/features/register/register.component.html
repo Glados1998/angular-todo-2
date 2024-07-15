@@ -1,5 +1,5 @@
-<div>
-  <div>
+<div class="register">
+  <div class="register_head">
     <h3>
       Register
     </h3>
@@ -7,7 +7,7 @@
       Please fill in the form to register.
     </p>
   </div>
-  <div>
+  <div class="register_main">
     <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
       <div>
         <label for="username">Username:</label>
@@ -30,9 +30,14 @@
         <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" required>
         <p *ngIf="registerForm.controls['confirmPassword'].errors?.['required']">You have to confirm the password</p>
       </div>
-      <div>
+      <div class="register_main-action">
         <button type="submit" class="btn-success" [disabled]="!registerForm.valid">Register</button>
       </div>
     </form>
+  </div>
+  <div>
+    <p>
+      Already have an account? <a routerLink="/login">Login here</a>
+    </p>
   </div>
 </div>

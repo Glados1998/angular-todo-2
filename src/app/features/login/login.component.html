@@ -1,5 +1,5 @@
-<div>
-  <div>
+<div class="login">
+  <div class="login_head">
     <h3>
       Login to your account
     </h3>
@@ -7,7 +7,7 @@
       Please enter your username and password to login.
     </p>
   </div>
-  <div>
+  <div class="login_main">
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <div>
         <label for="email">Email:</label>
@@ -19,7 +19,7 @@
         <input type="password" class="form-control" id="password" formControlName="password" required>
         <p *ngIf="loginForm.controls['password'].errors?.['required']">You have to specify a password</p>
       </div>
-      <div>
+      <div class="login_main-action">
         <button type="submit" class="btn-success" [disabled]="!loginForm.valid">Login</button>
       </div>
     </form>

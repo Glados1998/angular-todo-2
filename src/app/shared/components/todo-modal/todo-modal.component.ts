@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, Validators} from "@angular/forms";
 import {TodoService} from "../../../core/services/todo/todo.service";
 import {Todo} from "../../../core/interfaces/todo";
+import {Severity} from "../../enum/severity";
 
 
 @Component({
@@ -26,7 +27,7 @@ export class TodoModalComponent implements OnInit {
     isCompleted: [false]
   });
 
-  public severity = ['Low', 'Medium', 'High'];
+  severity = Object.values(Severity);
   public isLoading = false;
 
   ngOnInit() {

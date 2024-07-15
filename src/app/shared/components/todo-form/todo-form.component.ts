@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Validators, FormBuilder} from "@angular/forms";
 import {TodoService} from "../../../core/services/todo/todo.service";
 import {Todo} from "../../../core/interfaces/todo";
+import {Severity} from "../../enum/severity";
 
 
 @Component({
@@ -16,7 +17,7 @@ export class TodoFormComponent{
     private _fb: FormBuilder
   ) {}
 
-  severity = ['Low', 'Medium', 'High'];
+  severity = Object.values(Severity);
   todoForm = this._fb.group({
     title: ['', Validators.required],
     description: '',
