@@ -22,7 +22,7 @@ export class UserService {
     return this.http.post<UserLogin>(`${this.apiUrl}/login`, user).pipe(
       tap((response: any) => {
         localStorage.setItem('token', response.token);
-        localStorage.setItem('user', JSON.stringify({ username: response.user.username, email: response.user.email }));
+        localStorage.setItem('user', JSON.stringify({ username: response.user.username, email: response.user.email, id: response.user.id}));
         this.loginStatusSubject.next(true);
       })
     );
@@ -32,6 +32,18 @@ export class UserService {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.loginStatusSubject.next(false);
+  }
+
+  deleteAccount(id: string) {
+    return this.http.delete(`${this.apiUrl}/delete/${id}`);
+  }
+
+  updateAccountDetails(data: { id: string, data: any }) {
+    return this.http.post(`${this.apiUrl}/update/account-details`, data);
+  }
+
+  updatePassword(data: { id: string, password: string}) {
+    return this.http.post(`${this.apiUrl}/update/password`, data);
   }
 
   getLogin() {

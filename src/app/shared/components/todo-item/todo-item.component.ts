@@ -28,7 +28,6 @@ export class TodoItemComponent {
       if (result) {
         this.todoService.updateTodo(id, result).subscribe({
           next: (data: Todo) => {
-            console.log('Task updated successfully', data);
             this.todoItem = data; // Update the local todoItem
           },
           error: (error: any) => {
@@ -55,7 +54,6 @@ export class TodoItemComponent {
     todo.isComplete = !todo.isComplete;
     this.todoService.setStatus(id, todo).subscribe({
       next: (data: Todo) => {
-        console.log('Task status updated successfully', data);
         this.todoItem = data; // Update the local todoItem
       },
       error: (error: any) => {

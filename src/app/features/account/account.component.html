@@ -16,13 +16,14 @@
       </div>
       <div>
         <button class="btn-warning" (click)="onLogout()">Logout</button>
+        <button class="btn-danger" (click)="onDeleteAccount()">Delete</button>
       </div>
     </div>
     <div class="account_main-center">
       <div class="account_main-center-head">
         <h2>Edit Account Details</h2>
       </div>
-      <form [formGroup]="accountForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="accountForm" (ngSubmit)="onChangedDetails()">
         <div>
           <label for="username">Username:</label>
           <input id="username" formControlName="username" type="text">
@@ -32,7 +33,7 @@
           <input id="email" formControlName="email" type="email">
         </div>
         <div>
-          <button type="submit" class="btn-primary">Save Changes</button>
+          <button type="submit" class="btn-success">Save Changes</button>
         </div>
       </form>
       <div class="account_main-center-head">
@@ -40,19 +41,15 @@
       </div>
       <form [formGroup]="passwordForm" (ngSubmit)="onChangePassword()">
         <div>
-          <label for="currentPassword">Current Password:</label>
-          <input id="currentPassword" formControlName="currentPassword" type="password">
-        </div>
-        <div>
           <label for="newPassword">New Password:</label>
           <input id="newPassword" formControlName="newPassword" type="password">
         </div>
         <div>
-          <label for="confirmPassword">Confirm Password:</label>
+          <label for="confirmPassword">Confirm new Password:</label>
           <input id="confirmPassword" formControlName="confirmPassword" type="password">
         </div>
         <div>
-          <button type="submit" class="btn-primary">Change Password</button>
+          <button type="submit" class="btn-success">Change Password</button>
         </div>
       </form>
     </div>

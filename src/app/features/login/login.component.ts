@@ -28,8 +28,6 @@ export class LoginComponent {
     this.userService.login(this.loginForm.value as UserLogin).subscribe( {
       next: (data: any) => {
         console.log('User logged in successfully', data);
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify({username: data.user.username, email: data.user.email}));
         this.router.navigate(['/home']);
         this.loginForm.reset();
       },

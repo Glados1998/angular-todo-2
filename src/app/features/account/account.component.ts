@@ -11,7 +11,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 })
 export class AccountComponent implements OnInit {
 
-  logins: { user: any, token: string } | null = null; // Initialized to null
+  logins: { user: any, token: string } | null = null;
   private loginSubscription: Subscription;
 
   constructor(
@@ -27,11 +27,66 @@ export class AccountComponent implements OnInit {
       this.logins = status ? this.userService.getLogin() : null;
     });
     console.log(this.logins);
+
+    this.accountForm.patchValue({
+      username: this.logins.user.username,
+      email: this.logins.user.email
+    });
+
   }
 
   onLogout(): void {
     this.userService.logout();
     this.router.navigate(['/login']);
+  }
+
+  onDeleteAccount(): void {
+    this.userService.deleteAccount(this.logins.user.id).subscribe({
+      next: (data: any) => {
+        console.log('User deleted successfully', data);
+        this.userService.logout();
+        this.router.navigate(['/login']);
+      },
+      error: (error: any) => {
+        console.error('There was an error!', error);
+      }
+    });
+  }
+
+  onChangedDetails(): void {
+    if (!this.accountForm.valid) return console.error('Form is invalid');
+
+    this.userService.updateAccountDetails({
+      id: this.logins.user.id,
+      data: this.accountForm.value
+    }).subscribe({
+      next: (data: any) => {
+        console.log('Details updated successfully', data);
+      },
+      error: (error: any) => {
+        console.error('There was an error!', error);
+      }
+    });
+  }
+
+  onChangePassword(): void {
+    if (!this.passwordForm.valid) return console.error('Form is invalid');
+
+    if (this.passwordForm.value.newPassword !== this.passwordForm.value.confirmPassword) return console.error('New passwords do not match');
+
+
+    this.userService.updatePassword({
+      id: this.logins.user.id,
+      password: this.passwordForm.value.newPassword
+    }).subscribe({
+      next: (data: any) => {
+        console.log('Password updated successfully', data);
+        this.passwordForm.reset();
+      },
+      error: (error: any) => {
+        console.error('There was an error!', error);
+      }
+    });
   }
 
   accountForm = this.fb.group({
@@ -40,16 +95,9 @@ export class AccountComponent implements OnInit {
   })
 
   passwordForm = this.fb.group({
-    currentPassword: ['', Validators.required],
     newPassword: ['', Validators.required],
     confirmPassword: ['', Validators.required]
   })
 
-  onSubmit(): void {
-    console.log(this.accountForm.value);
-  }
 
-  onChangePassword(): void {
-    console.log(this.passwordForm.value);
-  }
 }
