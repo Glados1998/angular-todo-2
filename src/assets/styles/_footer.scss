@@ -1,0 +1,21 @@
+@import "colors";
+
+
+.footer {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: flex-start;
+  grid-auto-columns: max-content;
+  padding: 1rem 2rem;
+  position: absolute;
+  bottom: 0;
+
+
+  &_main {
+    margin-left: 2rem;
+
+    &-content {
+      display: flex;
+    }
+  }
+}

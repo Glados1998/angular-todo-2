@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {TodoComponent} from "./features/todo/todo.component";
-import {AboutComponent} from "./features/about/about.component";
 import {HomeComponent} from "./features/home/home.component";
 import {LoginComponent} from "./features/login/login.component";
 import {RegisterComponent} from "./features/register/register.component";
@@ -18,11 +17,6 @@ const routes: Routes = [
     path: 'todo',
     loadChildren: () => import('./features/features.module').then(m => m.FeaturesModule),
     component: TodoComponent
-  },
-  {
-    path: "about",
-    loadChildren: () => import('./features/features.module').then(m => m.FeaturesModule),
-    component: AboutComponent
   },
   {
     path:"login",
