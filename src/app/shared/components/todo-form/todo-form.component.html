@@ -18,7 +18,7 @@
 </form>
 
 <div class="form-message">
-  <p *ngIf="todoForm.get('severity').hasError('required')">you have to specify a task name</p>
-  <p *ngIf="todoForm.get('severity').hasError('required')">you have to specify a task severity</p>
+  <p *ngIf="todoForm.get('title').hasError('required')">You have to specify a task name</p>
+  <p *ngIf="todoForm.get('severity').hasError('required')">You have to specify a task severity</p>
   <p *ngIf="todoForm.get('description').hasError('maxlength')">Description is too long</p>
 </div>
